@@ -3,6 +3,8 @@ package com.dcc.movie_api.controller;
 import com.dcc.movie_api.data.Movie;
 import com.dcc.movie_api.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,29 +15,55 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
+
     @PostMapping("/addMovie")
-    public Movie addMovie(@RequestBody Movie movie){
-        return movieService.saveMovie(movie);
+    ResponseEntity<Movie> addMovie(@RequestBody Movie movie){
+        try {
+            movieService.saveMovie(movie);
+            return ResponseEntity.status(HttpStatus.CREATED).body(movie);
+        }
+        catch(Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
     }
+
 
     @GetMapping("/movies")
     public List<Movie> findAllMovies(){
         return movieService.getAllMovies();
     }
 
+
     @GetMapping("/movies/{id}")
-    public Movie findMovieById(@PathVariable Integer id){
-        return movieService.getMovieById(id);
+    ResponseEntity<Movie> findMovieById(@PathVariable Integer id){
+        Movie movieFound = movieService.getMovieById(id);
+        if(movieFound != null){
+            return ResponseEntity.ok(movieFound);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
     }
+
 
     @GetMapping("/findByGenre/{genre}")
-    public List<Movie> findMovieByGenre(@PathVariable String genre){
-        return movieService.getByGenre(genre);
+    ResponseEntity<List<Movie>> findMovieByGenre(@PathVariable String genre){
+        List<Movie> genreFound = movieService.getByGenre(genre);
+        if(genreFound.size() != 0){
+            return ResponseEntity.ok(genreFound);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
     }
 
+
     @GetMapping("/findByName/{name}")
-    public Movie findMovieByName(@PathVariable String name){
-        return movieService.getByName(name);
+    ResponseEntity<Movie> findMovieByName(@PathVariable String name){
+        Movie nameFound = movieService.getByName(name);
+        if(nameFound != null){
+            return ResponseEntity.ok(nameFound);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 
@@ -49,6 +77,7 @@ public class MovieController {
         return movieService.saveMovie(updateMovie);
     }
 
+    //204 status NO Content
     @DeleteMapping("/deleteMovie/{id}")
     public String deleteMovie(@PathVariable Integer id){
         try {

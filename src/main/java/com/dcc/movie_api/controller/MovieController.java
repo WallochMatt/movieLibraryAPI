@@ -39,13 +39,13 @@ public class MovieController {
     }
 
 
-    ////////////////////////// WIP //////////////////////////////
     @PutMapping("/editMovie/{id}")
     public Movie editMovie(@PathVariable Integer id,@RequestBody Movie movie){
         Movie updateMovie = movieService.getMovieById(id);
         updateMovie.setName(movie.getName());
         updateMovie.setGenre(movie.getGenre());
         updateMovie.setDirector(movie.getDirector());
+        updateMovie.setImageURL(movie.getImageURL());
         return movieService.saveMovie(updateMovie);
     }
 

@@ -3,6 +3,7 @@ package com.dcc.movie_api.data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.net.URL;
 
 @Entity
 public class Movie {
@@ -12,15 +13,17 @@ public class Movie {
         private String name;
         private String genre;
         private String director;
+        private URL imageURL;
 
     public Movie() {
     }
 
-    public Movie(Integer id, String name, String genre, String director) {
+    public Movie(Integer id, String name, String genre, String director, URL imageURL) {
         this.id = id;
         this.name = name;
         this.genre = genre;
         this.director = director;
+        this.imageURL = imageURL;
     }
 
     public Integer getId() {
@@ -53,5 +56,13 @@ public class Movie {
 
     public void setDirector(String director) {
         this.director = director;
+    }
+
+    public URL getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(URL imageURL) {
+        this.imageURL = imageURL;
     }
 }

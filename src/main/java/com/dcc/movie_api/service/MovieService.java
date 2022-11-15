@@ -5,6 +5,8 @@ import com.dcc.movie_api.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MovieService {
 
@@ -13,6 +15,10 @@ public class MovieService {
 
     public Movie saveMovie(Movie movie){
         return movieRepository.save(movie);
+    }
+
+    public List<Movie> getAllMovies(){
+        return movieRepository.findAll();
     }
 
 }

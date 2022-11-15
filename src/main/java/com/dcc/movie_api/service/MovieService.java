@@ -29,6 +29,8 @@ public class MovieService {
         return movieRepository.findByGenre(genre);
     }
 
-
+    public Movie getByName(String name){
+        return movieRepository.findByName(name);
+    }
 
 }

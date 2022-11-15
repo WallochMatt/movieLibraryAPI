@@ -41,7 +41,7 @@ public class MovieController {
         if(movieFound != null){
             return ResponseEntity.ok(movieFound);
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
     }
 
@@ -52,7 +52,7 @@ public class MovieController {
         if(genreFound.size() != 0){
             return ResponseEntity.ok(genreFound);
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
     }
 
@@ -63,37 +63,38 @@ public class MovieController {
         if(nameFound != null){
             return ResponseEntity.ok(nameFound);
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 
     @PutMapping("/editMovie/{id}")
-    public Movie editMovie(@PathVariable Integer id,@RequestBody Movie movie){
+    ResponseEntity<Movie> editMovie(@PathVariable Integer id,@RequestBody Movie movie){
         Movie updateMovie = movieService.getMovieById(id);
-        updateMovie.setName(movie.getName());
-        updateMovie.setGenre(movie.getGenre());
-        updateMovie.setDirector(movie.getDirector());
-        updateMovie.setImageURL(movie.getImageURL());
-        return movieService.saveMovie(updateMovie);
+        try {
+            updateMovie.setName(movie.getName());
+            updateMovie.setGenre(movie.getGenre());
+            updateMovie.setDirector(movie.getDirector());
+            updateMovie.setImageURL(movie.getImageURL());
+            movieService.saveMovie(updateMovie);
+            return ResponseEntity.ok(updateMovie);
+        }
+        catch(Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
-    //204 status NO Content
+
     @DeleteMapping("/deleteMovie/{id}")
-    public String deleteMovie(@PathVariable Integer id){
+    ResponseEntity<String> deleteMovie(@PathVariable Integer id){
         try {
             Movie reMovie = movieService.getMovieById(id);
             movieService.removeMovie(reMovie);
-            return "Movie deleted";
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         catch(Exception e){
-            return "Something went wrong, we could not find this movie";
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
-
-
-
-
 
 
 }

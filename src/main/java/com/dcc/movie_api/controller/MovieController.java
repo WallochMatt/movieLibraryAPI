@@ -3,10 +3,7 @@ package com.dcc.movie_api.controller;
 import com.dcc.movie_api.data.Movie;
 import com.dcc.movie_api.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +21,11 @@ public class MovieController {
     @GetMapping("/movies")
     public List<Movie> findAllMovies(){
         return movieService.getAllMovies();
+    }
+
+    @GetMapping("/movies/{id}")
+    public Movie findMovieById(@PathVariable Integer id){
+        return movieService.getMovieById(id);
     }
 
 }

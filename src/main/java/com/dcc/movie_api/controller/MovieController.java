@@ -38,4 +38,15 @@ public class MovieController {
         return movieService.getByName(name);
     }
 
+
+    ////////////////////////// WIP //////////////////////////////
+    @PutMapping("/editMovie/{id}")
+    public Movie editMovie(@PathVariable Integer id,@RequestBody Movie movie){
+        Movie updateMovie = movieService.getMovieById(id);
+        updateMovie.setName(movie.getName());
+        updateMovie.setGenre(movie.getGenre());
+        updateMovie.setDirector(movie.getDirector());
+        return movieService.saveMovie(updateMovie);
+    }
+
 }

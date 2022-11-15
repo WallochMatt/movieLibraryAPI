@@ -49,4 +49,22 @@ public class MovieController {
         return movieService.saveMovie(updateMovie);
     }
 
+    @DeleteMapping("/deleteMovie/{id}")
+    public String deleteMovie(@PathVariable Integer id){
+        try {
+            Movie reMovie = movieService.getMovieById(id);
+            movieService.removeMovie(reMovie);
+            return "Movie deleted";
+        }
+        catch(Exception e){
+            return "Something went wrong, we could not find this movie";
+        }
+    }
+
+
+
+
+
+
+
 }

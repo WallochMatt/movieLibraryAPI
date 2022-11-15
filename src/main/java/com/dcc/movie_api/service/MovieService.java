@@ -33,4 +33,8 @@ public class MovieService {
         return movieRepository.findByName(name);
     }
 
+    public void removeMovie(Movie movie){
+        movieRepository.delete(movie);
+    }
+
 }

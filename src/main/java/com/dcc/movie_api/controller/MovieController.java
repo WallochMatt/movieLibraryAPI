@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
+//@RequestMapping(headers = "Access-Control-Allow-Origin")
 public class MovieController {
 
     @Autowired

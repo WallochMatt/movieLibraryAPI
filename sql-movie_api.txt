@@ -1,0 +1,23 @@
+CREATE DATABASE movie_api;
+
+-- Run CREATE DATABASE, then activate the server, and finally insert the data
+
+INSERT INTO movie_api.movie (director, genre, name, imageurl) VALUES ('Don Bluth','Action','Titan A.E.','https://www.themoviedb.org/t/p/w500/el2iHk3LTJWfEnwrvcRkvWY501G.jpg')
+
+INSERT INTO movie_api.movie (director, genre, name, imageurl) VALUES ('Tim Miller','Comedy','Deadpool','https://lumiere-a.akamaihd.net/v1/images/image_8c4aa72b.jpeg');
+
+INSERT INTO movie_api.movie (director, genre, name, imageurl) VALUES ('Chris Zamoscianyk','Drama','Street Dreams','https://www.themoviedb.org/t/p/original/orwZbfHk3ihXlCbjc3tlAuTebEl.jpg');
+
+INSERT INTO movie_api.movie (director, genre, name, imageurl) VALUES ('Andres Muschietti','Horror','It','https://upload.wikimedia.org/wikipedia/en/5/5a/It_%282017%29_poster.jpg');
+
+INSERT INTO movie_api.movie (director, genre, name, imageurl) VALUES ('David Leitch','Comedy','Deadpool 2','https://hips.hearstapps.com/hmg-prod/images/deadpoolsmall-1525695071.jpg');
+
+INSERT INTO movie_api.movie (director, genre, name, imageurl) VALUES ('Dale Carman','Animation','G.I. Joe Valor vs Venom','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREA8S1Glz8uGauIf-LUtV6NpiU_CHKweK5OkVtVPDaeagrpYNW');
+
+INSERT INTO movie_api.movie (director, genre, name, imageurl) VALUES ('Henry Selick','Family','Nightmare Before Christmas','https://www.themoviedb.org/t/p/original/vHUKELnaEo8kawGYFvADIsePwjM.jpg');
+
+INSERT INTO movie_api.movie (director, genre, name, imageurl) VALUES ('Sam Raimi','Horror','Army of Darkness','https://flxt.tmsimg.com/assets/p14322_p_v12_ah.jpg');
+
+INSERT INTO movie_api.movie (director, genre, name, imageurl) VALUES ('Danny Antonucci','Animation','Ed, Edd n Eddy\'s Big Picure Show','https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRLKHv59FKXxVzzF86VKHOu3MFY4KpxdffLN8v6v77ryDCY19Mp');
+
+INSERT INTO movie_api.movie (director, genre, name, imageurl) VALUES ('Robert Alvarez','Animation','Billy & Mandy\'s Big Boogey Adventure','https://upload.wikimedia.org/wikipedia/en/7/7a/BigBoogeyAdventure.jpg');
